@@ -48,13 +48,20 @@
     //添加底图
     L.tileLayer.chinaProvider('GaoDe.Normal.Map').addTo(map);
     var mypop = L.popup();
-    m.on('click', function(e) {
+    map.on('click', function(e) {
     var content = '你临幸了这个点：<br>';
     content += e.latlng.toString();
     mypop.setLatLng(e.latlng)
        .setContent(content)
        .openOn(m);
     });
+    var lineArr=[[39.920969009399414, 116.38572692871094],[39.91101264953613,         
+    116.3862419128418],[39.91161346435547, 116.39636993408203],[39.9217414855957,    
+    116.3957691192627],[39.9213981628418, 116.38589859008789]];
+    var _viewSpotLayer=new L.featureGroup([]);
+    map.addLayer(_viewSpotLayer);
+    var line = L.polyline(lineArr,{color:'red',opacity:'0.8',weight:'3'}).addTo(_viewSpotLayer);
+
     //设置参照物
     L.marker([39.905530,116.391305]).addTo(map).bindPopup('<p>我是WGS84坐标下，天安门广场国旗所在位置</p>').openPopup();
 
