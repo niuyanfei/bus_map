@@ -47,7 +47,14 @@
 
     //添加底图
     L.tileLayer.chinaProvider('GaoDe.Normal.Map').addTo(map);
-
+    var mypop = L.popup();
+    m.on('click', function(e) {
+    var content = '你临幸了这个点：<br>';
+    content += e.latlng.toString();
+    mypop.setLatLng(e.latlng)
+       .setContent(content)
+       .openOn(m);
+    });
     //设置参照物
     L.marker([39.905530,116.391305]).addTo(map).bindPopup('<p>我是WGS84坐标下，天安门广场国旗所在位置</p>').openPopup();
 
